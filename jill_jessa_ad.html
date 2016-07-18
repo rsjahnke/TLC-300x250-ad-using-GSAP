@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>GSAP animation</title>
+		<style type="text/css">
+			@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+			body { padding: 30px; font-family: 'Open Sans', sans-serif; }
+            a#myAdLink { display: inline-block; }
+            #myAd {
+                width: 300px; height: 250px;
+                position: relative;
+                overflow: hidden; 
+            }
+            #myAd .myAd_Img { position: absolute; background: url(../JJ_sprite_TinyPNGFinal.png) no-repeat 0px 0px; }
+            #myAd #myAd_scene01 { width: inherit; height: inherit; top: 0px; left: 0px; }
+            #myAd #myAd_scene02 { width: inherit; height: inherit; background-position: -300px 0px; }
+            #myAd #myAd_scene03 { width: inherit; height: inherit; background-position: -600px 0px; }	
+            #myAd #myAd_scene04 { width: inherit; height: inherit; background-position: 0px -250px; }   
+
+            #myAd #myAd_heart {
+                width: 24px; height: 23px;
+                background-position: -300px -250px;
+                top: 196px; left: 6px;
+                opacity: 100;
+            }
+
+            #myAd #myAd_orange {
+                width: 127px; height: 20px;
+                background-position: -300px -480px;
+                top: 170px; left: 87px;
+                opacity: 100;
+            }
+
+            #myAd #myAd_tuneIn {
+                width: 300px; height: 51px;
+                background-position: -600px -250px;
+                top: 196px; left: 6px;
+                opacity: 100;
+            }
+
+        </style>
+	</head>
+	<body>
+
+		<!-- build entire ad inside an anchor link tag so it'd be clickable to another location --> 
+        <a id = "myAdLink" href="http://www.tlc.com/tv-shows/jill-jessa-counting-on/"> 
+            
+            <div id="myAd"> 
+            <!--note - typically not worried a/b SEO in a banner ad because it's generally the results of SEO that result in your ad being seen -->
+                
+                <div class="myAd_Img" id="myAd_scene04"></div>
+                <div class="myAd_Img" id="myAd_scene03"></div>
+                <div class="myAd_Img" id="myAd_scene02"></div>
+                <div class="myAd_Img" id="myAd_scene01"></div>
+                <div class="myAd_Img" id="myAd_heart"></div>
+                <div class="myAd_Img" id="myAd_orange"></div>
+                <div class="myAd_Img" id="myAd_tuneIn"></div> 
+            
+            </div> 
+        
+        </a> 
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+        <script type="text/javascript">
+        
+            /* create a generic anonymous function to isolate this particular JavaScript from any others */
+            (function(){
+
+                var tl1 = new TimelineMax(); //allows us to append all TimelineMax functionality to tl1 variable
+
+                /*from for when what you're animating is coming from "offscreen" vs. to when it's already displayed and you're moving it from where it's already visible*/
+                tl1.to('#myAd_scene01', 1.5, {top: -350, rotation: -20, ease: Power2.easeOut}, 1.5)
+                .to('#myAd_scene02', 1.5, {top: -350, rotation: 20, ease: Power2.easeOut})
+                .to('#myAd_scene03', 1.5, {top: -350, rotation: -20, ease: Power2.easeOut})
+                .from('#myAd_heart', 1.5, {opacity: 0}, '-=.5')
+                .from('#myAd_orange', 2, {opacity: 0, ease: Bounce.easeOut})
+                .from('#myAd_tuneIn', .75, {opacity: 0, ease: Power3.easeOut});
+
+                 
+            }());
+
+        </script>
+
+
+	</body>
+</html>
